@@ -1,5 +1,5 @@
 # kubernetes-configmap-reload
-ConfigMap reload example
+ConfigMap reload example change the spring boot application properties in Runtime
 
 
 ### Short kickoff
