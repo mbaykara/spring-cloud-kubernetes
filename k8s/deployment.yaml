@@ -18,7 +18,7 @@ spec:
       serviceAccountName: config-reader
       containers:
         - name: spring-cloud
-          image: baykara/spring123323
+          image: baykara/springcloud
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
