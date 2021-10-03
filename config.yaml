@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-cloud
+  namespace: default
+data:
+  application.yml: |-
+    app:
+      data:
+        surname: Baykara
+        name: Mehmet Ali

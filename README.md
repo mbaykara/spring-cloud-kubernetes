@@ -1,1 +1,2 @@
-# spring-cloud-kubernetes
+# kubernetes-configmap-reload
+ConfigMap reload example

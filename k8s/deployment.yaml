@@ -1,0 +1,25 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud
+  namespace: default
+spec:
+  selector:
+      matchLabels:
+        app: spring-cloud
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spring-cloud
+    spec:
+      serviceAccountName: config-reader
+      containers:
+        - name: spring-cloud
+          image: baykara/spring123323
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      

@@ -1,0 +1,8 @@
+management:
+  endpoint:
+    web:
+      exposure:
+        inculde: info, refresh, keepalive, health
+spring:
+  application:
+    name: spring-cloud
