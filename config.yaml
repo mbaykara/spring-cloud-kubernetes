@@ -5,7 +5,10 @@ metadata:
   namespace: default
 data:
   application.yml: |-
-    app:
-      data:
-        surname: Baykara
-        name: Mehmet Ali
+    surname: frontline
+    name: xserver
+    spring:
+      profiles:
+        actives: prod
+      application:
+        name: foo

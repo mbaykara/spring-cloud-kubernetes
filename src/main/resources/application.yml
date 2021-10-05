@@ -6,3 +6,9 @@ management:
 spring:
   application:
     name: spring-cloud
+  profiles:
+    active: development
+logging:
+  level:
+    org.springframework.cloud.kubernetes: DEBUG
+    root: INFO
