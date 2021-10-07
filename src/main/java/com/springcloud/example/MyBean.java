@@ -6,11 +6,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyBean {
-
 @ConfigurationProperties(prefix = "spring")
 public class MyBean {
-  
+
   @Value("${spring.application.name:default-value}")
 	private String name;
 
