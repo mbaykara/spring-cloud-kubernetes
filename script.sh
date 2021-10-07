@@ -11,3 +11,4 @@ docker push baykara/springcloud
 
 echo "For Deploying to Kubernetes Cluster"
 echo "replace "
+kubectl apply -f k8s/

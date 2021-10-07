@@ -5,8 +5,8 @@ metadata:
   namespace: default
 data:
   application.yml: |-
-    surname: frontline
-    name: xserver
+    surname: white
+    name: walter
     spring:
       profiles:
         actives: prod

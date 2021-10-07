@@ -9,17 +9,18 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.Data;
 
 @Component
-// @ConfigurationProperties()
-@PropertySource("test.yml")
+@ConfigurationProperties()
+@Data
 public class MyBean {
 
-	@Value("${name}")
+	@Value("${spring.application.name}")
 	private String name;
 
-	@Scheduled(fixedDelay = 5000)
+	@Scheduled(fixedDelay = 2000)
 	public void hello() {
 		System.out.println("The first message is: " + this.name);
 	}
