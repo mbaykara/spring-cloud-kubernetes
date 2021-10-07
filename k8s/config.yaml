@@ -5,10 +5,6 @@ metadata:
   namespace: default
 data:
   application.yml: |-
-    surname: white
-    name: walter
     spring:
-      profiles:
-        actives: prod
-      application:
-        name: foo
+      name: Kubernetes
+      version: 1.2
