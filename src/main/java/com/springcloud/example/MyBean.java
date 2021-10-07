@@ -13,16 +13,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 @Component
-@ConfigurationProperties()
 @Data
+@ConfigurationProperties(prefix = "spring")
 public class MyBean {
 
-	@Value("${spring.application.name}")
 	private String name;
+
+	private String version;
 
 	@Scheduled(fixedDelay = 2000)
 	public void hello() {
 		System.out.println("The first message is: " + this.name);
+		System.out.println("The second message is: " + this.version);
 	}
 
 }
