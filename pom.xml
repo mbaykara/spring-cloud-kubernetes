@@ -21,6 +21,19 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <developers>
+        <developer>
+            <id>mbaykara</id>
+            <name>Mehmet Ali Baykara</name>
+            <email>mehmetalibaykara@gmail.com</email>
+            <url>https://github.com/mbaykara</url>
+            <roles>
+                <role>Maintainer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
