@@ -11,20 +11,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+// @Component
+// @ConfigurationProperties()
 
-@Component
 @Data
-@ConfigurationProperties(prefix = "spring")
+@Configuration
+@RefreshScope
 public class MyBean {
 
+	@Value("${name: default}")
 	private String name;
 
+	@Value("${spring.version: default}")
 	private String version;
-
-	@Scheduled(fixedDelay = 2000)
-	public void hello() {
-		System.out.println("The first message is: " + this.name);
-		System.out.println("The second message is: " + this.version);
-	}
 
 }
