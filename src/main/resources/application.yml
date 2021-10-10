@@ -8,7 +8,11 @@ spring:
     name: spring-cloud
   profiles:
     active: development
+  main:
+    banner-mode: "off"
 logging:
   level:
     org.springframework.cloud.kubernetes: DEBUG
     root: INFO
+project:
+  version: 0.0.1-SNAPSHOT
