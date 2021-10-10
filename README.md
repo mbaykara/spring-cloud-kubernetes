@@ -28,3 +28,18 @@ Check the logs
 kubectl apply -f config.yaml
 ```
 Check the logs again and see the diffence!
+## Test the endpoints
+ Lets test it without creating service on Kubernetes
+ Simply: 
+```
+ kubectl port-forward [pod-name] 8080
+```
+then
+```
+curl localhost:8080/version
+```
+and 
+
+```
+curl localhost:8080/name
+```
