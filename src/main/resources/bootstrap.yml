@@ -2,19 +2,15 @@ spring:
   cloud:
     kubernetes:
       enabled: true
-      config:
-        enabled: true
-        sources:
-          - namespace: default
-            name: spring-cloud
       reload:
         enabled: true
         mode: event
-        strategy: refresh
-  # profiles:
-  #   active: bootstrap
 
 management:
   endpoint:
     restart:
       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"

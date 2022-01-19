@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: spring-cloud-watcher
+      namespace: namespace1
+    spec:
+      selector:
+        matchLabels:
+          app: spring-cloud-watcher
+      template:
+        metadata:
+          labels:
+            app: spring-cloud-watcher
+        spec:
+          serviceAccount: spring-cloud-acc
+          containers:
+          - name: configuration-watcher-container
+            image: springcloud/spring-cloud-kubernetes-configuration-watcher:2.0.1-SNAPSHOT
+            imagePullPolicy: IfNotPresent
+            readinessProbe:
+              httpGet:
+                port: 8888
+                path: /actuator/health/readiness
+            livenessProbe:
+              httpGet:
+                port: 8888
+                path: /actuator/health/liveness
+            ports:
+            - containerPort: 8888
