@@ -1,20 +1,3 @@
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-     run: spring-cloud
-  name: spring-cloud
-spec:
-  ports:
-    - name: http
-      port: 8080
-      targetPort: 8080
-  selector:
-     run: spring-cloud
-  type: ClusterIP
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
