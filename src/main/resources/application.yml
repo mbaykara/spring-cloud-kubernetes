@@ -1,14 +1,24 @@
 spring:
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true 
+        mode: event
   version: v3
   application:
     name: spring-cloud-app
-
+logging:
+  level:
+    org: 
+      springframework:
+        web: DEBUG
 management:
     endpoints:
         web:
             exposure:
                 include: '*'
-  
     endpoint:
       restart:
+        enabled: true
+      refresh:
         enabled: true

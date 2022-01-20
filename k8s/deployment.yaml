@@ -12,6 +12,10 @@ spec:
       labels:
         app: spring-cloud-app
     spec:
+      volumes:
+      - name: config
+        configMap:
+          name: spring-cloud-app
       serviceAccountName:  spring-cloud-acc
       containers:
         - name: spring-cloud
@@ -19,6 +23,10 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          volumeMounts:
+          - name: config
+            mountPath: "/config"
+            readOnly: true
 --- 
 apiVersion: v1
 kind: Service
