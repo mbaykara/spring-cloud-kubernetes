@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: spring-cloud
+  name:  spring-cloud-app
   labels:
     spring.cloud.kubernetes.config: "true"
 data:
@@ -9,3 +9,5 @@ data:
     name: myapp
     spring:
       version: v3
+      application:
+        name: foo

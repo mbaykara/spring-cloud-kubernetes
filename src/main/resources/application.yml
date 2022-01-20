@@ -1,3 +1,14 @@
 spring:
+  version: v3
   application:
-    name: spring-cloud
+    name: spring-cloud-app
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+  
+    endpoint:
+      restart:
+        enabled: true
