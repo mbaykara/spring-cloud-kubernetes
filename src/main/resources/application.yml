@@ -13,10 +13,10 @@ logging:
       springframework:
         web: DEBUG
 management:
-    endpoints:
-        web:
-            exposure:
-                include: '*'
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,restart"
     endpoint:
       restart:
         enabled: true
