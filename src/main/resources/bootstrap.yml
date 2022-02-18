@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring-cloud-app
+  cloud:
+    # kubernetes:
+      # reload:
+        # enabled: true
+        # mode: event
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"

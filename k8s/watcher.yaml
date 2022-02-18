@@ -20,6 +20,9 @@ items:
           - name: spring-cloud
             image: springcloud/spring-cloud-kubernetes-configuration-watcher:2.0.1-SNAPSHOT
             imagePullPolicy: IfNotPresent
+            env:
+            - name: logging.level.org.springframework.cloud.kubernetes
+              value: DEBUG
             readinessProbe:
               httpGet:
                 port: 8888
