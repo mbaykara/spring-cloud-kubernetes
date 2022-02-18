@@ -19,7 +19,7 @@ spec:
       serviceAccountName:  spring-cloud-acc
       containers:
         - name: spring-cloud
-          image: baykara/springkubernetes:54
+          image: baykara/springkubernetes:04
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
