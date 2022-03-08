@@ -15,6 +15,7 @@
    <description>Spring Cloud Kubernetes ConfigMap Reload</description>
    <properties>
       <java.version>11</java.version>
+   <version.number>${project.version}</version.number>
    </properties>
    <dependencies>
       <dependency>
@@ -30,9 +31,35 @@
          <artifactId>spring-cloud-starter-kubernetes-fabric8-config</artifactId>
          <version>2.1.0</version>
       </dependency>
+      
    </dependencies>
    <build>
       <plugins>
+      <plugin>
+         <groupId>pl.project13.maven</groupId>
+         <artifactId>git-commit-id-plugin</artifactId>
+         <version>4.9.10</version>  
+          <executions>
+        <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+                <goal>revision</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>validate-the-git-infos</id>
+            <goals>
+                <goal>validateRevision</goal>
+            </goals>
+        </execution>
+    </executions>
+        <configuration>
+          <dateFormat>yyyyMMdd-HHmmss</dateFormat>
+          <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+          <generateGitPropertiesFile>false</generateGitPropertiesFile>
+        </configuration>
+
+      </plugin>
          <plugin>
             <groupId>com.google.cloud.tools</groupId>
             <artifactId>jib-maven-plugin</artifactId>
