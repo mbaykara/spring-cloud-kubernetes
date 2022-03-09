@@ -9,4 +9,4 @@ mvn compile jib:build -Djib.to.tags=k8s
 ```
 
 #### disclaimer:
-I have to say the official documentation about spring kubernetes reload configmap with watcher is missing many important points. I hope this sample helps someone.
+The official documentation about spring kubernetes reload configmap with watcher operator is missing many important points that's crucial for configuration.
