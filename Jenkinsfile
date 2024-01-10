@@ -32,20 +32,33 @@ pipeline {
         }
       }
     }
-    stage('Approve based on environment lead') {
+    stage('Deploy to Test Env') {
+      steps {
+        echo "Deployment approved to ${envType} by ${approverId}."
+        sh 'docker run -d --name test-nginx nginx'
+
+      }
+    }
+    stage('Manual Approve to Production') {
       input {
-        message 'Please select environment'
+        message 'Do you want to deploy to prod environment?'
         id 'envId'
         ok 'Submit'
         submitterParameter 'approverId'
         parameters {
-          choice choices: ['Prod', 'Test'], name: 'envType'
-        }
+          choice choices: ['Yes'], name: 'envType'
+        }			
       }
 
       steps {
-        echo "Deployment approved to ${envType} by ${approverId}."
-        sh 'docker run -d nginx'
+
+        script {
+                    if (env.BRANCH_NAME == 'main' && ${envType}  == "Yes") {
+                       echo "Deployment approved to ${envType} by ${approverId}."
+                       sh 'docker run -d --name prod-nginx nginx'
+                    } else {
+                        echo 'Pass Production  deployment'
+                    }
 
       }
     }
