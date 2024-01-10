@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Deploy to Test Env') {
             steps {
-                echo "Deployment approved to ${envType} by ${approverId}."
+                echo "Deployment to Test env"
                 sh 'docker run -d --name test-nginx nginx'
 
             }
