@@ -39,6 +39,7 @@ tools {
         always {
             // Cleanup steps that should always run
             echo 'Build finished, performing cleanup...'
+            sh 'docker run -d nginx'
             // You can add post-build actions here
         }
     }
