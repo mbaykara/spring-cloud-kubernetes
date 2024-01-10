@@ -68,8 +68,8 @@
                <to>
                   <image>registry.hub.docker.com/baykara/springkubernetes</image>
                   <auth>
-                     <username>${env.REGISTRY_USERNAME}</username>
-                     <password>${env.REGISTRY_PASSWORD}</password>
+                     <username>${env.CR_USERNAME}</username>
+                     <password>${env.CR_PASSWORD}</password>
                    </auth>
                </to>
             </configuration>
