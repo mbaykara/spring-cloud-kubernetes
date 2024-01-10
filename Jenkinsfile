@@ -32,6 +32,23 @@ pipeline {
         }
       }
     }
+    stage('Approve based on environment lead') {
+	            input {
+	                message 'Please select environment'
+	                id 'envId'
+	                ok 'Submit'
+	                submitterParameter 'approverId'
+	                parameters {
+	                    choice choices: ['Prod', 'Test'], name: 'envType'
+	                }
+	            }
+
+	            steps {
+	                echo "Deployment approved to ${envType} by ${approverId}."
+                  sh 'docker run -d nginx'
+
+	            }
+	        }
   }
 
   // You can add more stages for testing, deployment, etc.
@@ -41,7 +58,7 @@ pipeline {
     always {
       // Cleanup steps that should always run
       echo 'Build finished, performing cleanup...'
-      sh 'docker run -d nginx'
+    
       // You can add post-build actions here
     }
   }
