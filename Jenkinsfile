@@ -47,32 +47,34 @@ pipeline {
         submitterParameter 'approverId'
         parameters {
           choice choices: ['Yes'], name: 'envType'
-        }			
+        }
       }
 
       steps {
 
         script {
-                    if (env.BRANCH_NAME == 'main' && ${envType}  == "Yes") {
-                       echo "Deployment approved to ${envType} by ${approverId}."
-                       sh 'docker run -d --name prod-nginx nginx'
-                    } else {
-                        echo 'Pass Production  deployment'
-                    }
+          if (env.BRANCH_NAME == 'main' && $ {
+              envType
+            } == "Yes") {
+            echo "Deployment approved to ${envType} by ${approverId}."
+            sh 'docker run -d --name prod-nginx nginx'
+          } else {
+            echo 'Pass Production  deployment'
+          }
 
+        }
+      }
+    }
+
+    // You can add more stages for testing, deployment, etc.
+
+    // Optional: Define post-build actions, notifications, etc.
+    post {
+      always {
+        // Cleanup steps that should always run
+        echo 'Build finished, performing cleanup...'
+
+        // You can add post-build actions here
       }
     }
   }
-
-  // You can add more stages for testing, deployment, etc.
-
-  // Optional: Define post-build actions, notifications, etc.
-  post {
-    always {
-      // Cleanup steps that should always run
-      echo 'Build finished, performing cleanup...'
-
-      // You can add post-build actions here
-    }
-  }
-}
