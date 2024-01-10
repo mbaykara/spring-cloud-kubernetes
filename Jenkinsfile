@@ -1,46 +1,48 @@
 pipeline {
- agent {label 'prod'}
-tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
+  agent {
+    label 'prod'
+  }
+  tools {
+    // Install the Maven version configured as "M3" and add it to the path.
+    maven "M3"
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        // Checkout your source code repository
+        git branch: 'main', url: 'https://github.com/mbaykara/spring-cloud-kubernetes.git'
+      }
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout your source code repository
-                git branch: 'main', url: 'https://github.com/mbaykara/spring-cloud-kubernetes.git'
-            }
+
+    stage('Build') {
+      steps {
+        // Run Maven build
+        sh 'mvn compile jib:build -Djib.to.tags=k8s' // Or any other Maven commands you need
+      }
+      post {
+        success {
+          // Actions to perform after a successful build
+          echo 'Maven build successful!'
+          // You can add additional steps like archiving artifacts, publishing reports, etc.
         }
-        
-        stage('Build') {
-            steps {
-                // Run Maven build
-                sh 'mvn compile jib:build -Djib.to.tags=k8s' // Or any other Maven commands you need
-            }
-            post {
-                success {
-                    // Actions to perform after a successful build
-                    echo 'Maven build successful!'
-                    // You can add additional steps like archiving artifacts, publishing reports, etc.
-                }
-                failure {
-                    // Actions to perform if the build fails
-                    echo 'Maven build failed!'
-                    // You can add notifications or any cleanup steps here
-                }
-            }
+        failure {
+          // Actions to perform if the build fails
+          echo 'Maven build failed!'
+          // You can add notifications or any cleanup steps here
         }
+      }
     }
-    
-    // You can add more stages for testing, deployment, etc.
-    
-    // Optional: Define post-build actions, notifications, etc.
-    post {
-        always {
-            // Cleanup steps that should always run
-            echo 'Build finished, performing cleanup...'
-            sh 'docker run -d nginx'
-            // You can add post-build actions here
-        }
+  }
+
+  // You can add more stages for testing, deployment, etc.
+
+  // Optional: Define post-build actions, notifications, etc.
+  post {
+    always {
+      // Cleanup steps that should always run
+      echo 'Build finished, performing cleanup...'
+      sh 'docker run -d nginx'
+      // You can add post-build actions here
     }
+  }
 }
