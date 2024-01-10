@@ -36,7 +36,8 @@ pipeline {
         stage('Deploy to Test Env') {
             steps {
                 echo "Deployment to Test env"
-                sh 'docker run -d --name test-nginx nginx'
+                sh 'docker kill test-nginx'
+                sh 'docker run --rm -d --name test-nginx nginx'
 
             }
         }
