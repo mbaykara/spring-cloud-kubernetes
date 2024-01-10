@@ -34,6 +34,9 @@ pipeline {
             }
         }
         stage('Deploy to Test Env') {
+            agent {
+                label 'test'
+             }
             steps {
                 echo "Deployment to Test env"
                 sh 'docker kill test-nginx'
@@ -55,7 +58,7 @@ pipeline {
             steps {
 
                 script {
-                    if (env.BRANCH_NAME == 'main' && userInput == true ) {
+                    if (env.BRANCH_NAME == 'main') {
                         echo "Deployment approved to Prod"
                         sh 'docker run -d --name prod-nginx nginx'
                     }
@@ -80,17 +83,3 @@ pipeline {
         }
     }
 }
-
-def userInput
-try {
-    userInput = input(
-        id: 'Proceed1', message: 'Was this successful?', parameters: [
-        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
-        ])
-} catch(err) { // input false
-    def user = err.getCauses()[0].getUser()
-    userInput = false
-    echo "Aborted by: [${user}]"
-}
-
-  
