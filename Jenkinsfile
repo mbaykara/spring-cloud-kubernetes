@@ -56,7 +56,7 @@ pipeline {
             // }
 
             steps {
-
+                 //for multi branch pipelin
                 script {
                     if (env.BRANCH_NAME == 'main') {
                         echo "Deployment approved to Prod"
