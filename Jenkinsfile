@@ -54,9 +54,7 @@ pipeline {
             steps {
 
                 script {
-                    if (env.BRANCH_NAME == 'main' && ${envType} {
-                    
-                } == "Yes") {
+                    if (env.BRANCH_NAME == 'main' && "${envType}" == "Yes") {
                         echo "Deployment approved to ${envType} by ${approverId}."
                         sh 'docker run -d --name prod-nginx nginx'
                     }
