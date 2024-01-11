@@ -66,6 +66,7 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == 'main') {
                         echo "Deployment approved to Prod"
+                        sh 'docker kill prod-nginx'
                         sh 'docker run -d --name prod-nginx nginx'
                     }
                     else {
