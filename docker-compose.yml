@@ -1,14 +1,10 @@
 services:
   agent:
     image: baykara/jenkins-swarm-agent:v0.1.1
-    command: java -jar swarm-client-3.44.jar -name prod -master ${JENKINS_URL} -username ${SWARM_USER} -password ${SWARM_PASS} -executors ${SWARM_EXECUTORS} -labels ${LABELS}
+    command: java -jar swarm-client-3.44.jar -name ${NODE_NAME} -master ${JENKINS_URL} -username ${SWARM_USER} -password ${SWARM_PASS} -executors ${SWARM_EXECUTORS} -labels ${LABELS}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/.m2:/root/.m2
     restart: on-failure
-    environment:
-      JENKINS_URL: http://95.216.207.98:8080/
-      SWARM_USER: admin
-      SWARM_PASS: admin
-      SWARM_EXECUTORS: 1
-      LABELS: prod
+    env_file:
+      - "./.env"
