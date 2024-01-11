@@ -3,6 +3,9 @@ pipeline {
     agent {
         label 'prod'
     }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('CR_REGISTRY')
+    }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
@@ -18,7 +21,10 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Maven build
-                sh 'mvn compile jib:build -Djib.to.tags=k8s' // Or any other Maven commands you need
+                withCredentials([usernamePassword(credentialsId: 'CR_REGISTRY', usernameVariable: 'CR_USERNAME', passwordVariable: 'CR_PASSWORD')]) {
+                        // Your Docker build and push steps here
+                    sh 'mvn compile jib:build -Djib.to.tags=k8s' 
+                }
             }
             post {
                 success {
